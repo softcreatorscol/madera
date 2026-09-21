@@ -43,7 +43,6 @@
   h2 { font-size: clamp(1.9rem, 4vw, 2.7rem); font-weight: 800; color: var(--navy); margin-bottom: 1.2rem; }
   h3 { font-size: 1.25rem; font-weight: 700; color: var(--navy); }
 
-  /* Cada sección principal es una "página": solo una visible a la vez */
   .page[hidden] { display: none !important; }
 
   .btn {
@@ -59,7 +58,6 @@
   .btn.blue { background: var(--blue); border-color: var(--blue); }
   .btn.blue:hover { background: var(--navy); border-color: var(--navy); }
 
-  /* ---- Barra superior y cabecera ---- */
   .topbar { background: var(--navy); color: #C9D7EC; font-size: .88rem; }
   .topbar .wrap { display: flex; justify-content: space-between; gap: 1rem; padding: .4rem 0; flex-wrap: wrap; }
   .topbar a { color: #fff; text-decoration: none; font-weight: 600; }
@@ -87,9 +85,8 @@
     nav.main .btn { margin: 1rem 0 0; }
   }
 
-  /* ---- Inicio ---- */
   .hero { position: relative; color: #fff; background-color: #0B2A52; overflow: hidden; }
-  .hero-bg { position: absolute; inset: 0; background: url('fotos/foto-39.jpg') center 30%/cover no-repeat; }
+  .hero-bg { position: absolute; inset: 0; background: url('fotos/foto-01.jpg') center 30%/cover no-repeat; }
   .hero-bg::after { content: ""; position: absolute; inset: 0;
     background: linear-gradient(100deg, rgba(6,38,79,.94) 0, rgba(6,38,79,.90) 42%, rgba(11,76,156,.62) 72%, rgba(11,76,156,.30) 100%);
   }
@@ -115,7 +112,6 @@
     .facts li:last-child { border-bottom: 0; }
   }
 
-  /* ---- Secciones ---- */
   section.block { padding: clamp(3.5rem, 8vw, 6rem) 0; }
   .lead-in { color: var(--gray); max-width: 40rem; margin: 0 0 2rem; }
   .split { display: grid; gap: clamp(2rem, 5vw, 4rem); grid-template-columns: 1fr; align-items: start; }
@@ -125,7 +121,6 @@
   .history h3 { font-size: 1.6rem; margin-bottom: 1rem; }
   .history p:last-child { margin-bottom: 0; }
 
-  /* Valores en pestañas */
   .values { background: var(--navy); color: #fff; }
   .values h2 { color: #fff; }
   .tabs { display: grid; gap: 2rem; grid-template-columns: 1fr; }
@@ -139,23 +134,24 @@
   .tabpanel h3 { color: #fff; font-size: 2rem; margin-bottom: .8rem; }
   .tabpanel p { font-size: 1.15rem; color: #DCE6F5; max-width: 38rem; margin: 0; }
 
-  /* Productos */
   .products { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.6rem; list-style: none; margin: 0; padding: 0; }
   .card { background: #fff; border: 1px solid var(--line); display: flex; flex-direction: column; transition: box-shadow .2s, transform .2s, border-color .2s; }
   .card:hover { box-shadow: 0 14px 30px rgba(6,38,79,.16); transform: translateY(-4px); border-color: var(--blue-light); }
-  .card .pic { aspect-ratio: 1; background: #E9EDF3; overflow: hidden; display: block; }
-  .card .pic img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
+  .card .pic { aspect-ratio: 1; background: #E9EDF3; overflow: hidden; display: block; all: unset; cursor: pointer; position: relative; }
+  .card .pic img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; display: block; }
   .card:hover .pic img { transform: scale(1.06); }
+  .card .pic .noimg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; text-align: center; padding: .8rem; font-family: var(--head); font-weight: 700; font-size: .95rem; color: var(--blue); background: var(--blue-50); }
   .card .info { padding: 1rem 1.1rem 1.2rem; display: flex; flex-direction: column; gap: .3rem; flex: 1; }
-  .card .info a.titlelink { text-decoration: none; }
+  .card .info button.titlelink { all: unset; cursor: pointer; }
+  .card .info button.titlelink:hover h3 { color: var(--blue); }
   .card .info p { margin: 0; font-size: .92rem; color: var(--gray); }
   .card .row { margin-top: auto; padding-top: .8rem; display: flex; gap: .8rem; flex-wrap: wrap; align-items: center; }
   .card .row a.q { background: var(--blue); color: #fff; padding: .55rem .9rem; text-decoration: none; font-family: var(--head); font-weight: 700; font-size: .85rem; border-radius: 3px; }
   .card .row a.q:hover { background: var(--orange); }
-  .card .row a.leer { font-size: .9rem; font-weight: 600; }
+  .card .row button.leer { all: unset; cursor: pointer; font-size: .9rem; font-weight: 600; color: var(--blue); }
+  .card .row button.leer:hover { text-decoration: underline; }
   .preview-foot { margin-top: 2rem; }
 
-  /* Galería */
   .gallery-sec { background: var(--bg); border-top: 1px solid var(--line); }
   .gallery { column-width: 250px; column-gap: 12px; }
   .gallery figure { margin: 0 0 12px; break-inside: avoid; background: #E3E9F2; overflow: hidden; }
@@ -171,7 +167,29 @@
   .lb-btn.prev { left: 1rem; } .lb-btn.next { right: 1rem; }
   .lb-close { position: fixed; top: 1rem; right: 1rem; background: #fff; color: var(--navy); border: 0; width: 44px; height: 44px; font-size: 1.5rem; cursor: pointer; border-radius: 50%; }
 
-  /* Contacto */
+  dialog.pm { border: 0; padding: 0; border-radius: 10px; overflow: hidden; width: min(880px, 94vw); max-height: 90vh; background: #fff; }
+  dialog.pm::backdrop { background: rgba(4,20,44,.75); }
+  .pm-head { position: relative; background: var(--navy); color: #fff; padding: 1.4rem 3.2rem 1.4rem 1.6rem; }
+  .pm-head h3 { color: #fff; font-size: 1.5rem; }
+  .pm-close { position: absolute; top: .7rem; right: .7rem; background: rgba(255,255,255,.14); color: #fff; border: 0; width: 38px; height: 38px; border-radius: 50%; font-size: 1.3rem; cursor: pointer; }
+  .pm-close:hover { background: rgba(255,255,255,.28); }
+  .pm-body { display: grid; grid-template-columns: 1fr; max-height: calc(90vh - 70px); overflow-y: auto; }
+  @media (min-width: 700px) { .pm-body { grid-template-columns: 1.1fr 1fr; } }
+  .pm-media { background: #101E33; }
+  .pm-media-main { aspect-ratio: 1; background: #1B2E4C; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .pm-media-main img { width: 100%; height: 100%; object-fit: cover; }
+  .pm-media-main .noimg { color: #9FB3D6; font-family: var(--head); font-weight: 700; text-align: center; padding: 1rem; }
+  .pm-thumbs { display: flex; gap: .5rem; padding: .6rem; overflow-x: auto; background: #0B1830; }
+  .pm-thumbs button { all: unset; cursor: pointer; flex: 0 0 auto; width: 56px; height: 56px; border-radius: 4px; overflow: hidden; border: 2px solid transparent; opacity: .65; }
+  .pm-thumbs button.active { border-color: var(--orange); opacity: 1; }
+  .pm-thumbs img { width: 100%; height: 100%; object-fit: cover; }
+  .pm-info { padding: 1.4rem 1.6rem 1.8rem; }
+  .pm-specs { list-style: none; margin: 0 0 1.1rem; padding: 0; display: grid; gap: .5rem; }
+  .pm-specs li { font-size: .95rem; display: flex; gap: .5rem; }
+  .pm-specs li b { font-family: var(--head); color: var(--navy); min-width: 8rem; }
+  .pm-info p.desc { color: var(--gray); margin: 0 0 1.4rem; }
+  .pm-info .btn { width: 100%; }
+
   .contact { background: var(--blue); color: #fff; }
   .contact h2 { color: #fff; }
   .contact-grid { display: grid; gap: clamp(2rem, 5vw, 4rem); grid-template-columns: 1fr; }
@@ -312,7 +330,7 @@
     <section class="block">
       <div class="wrap">
         <h2>Productos</h2>
-        <p class="lead-in">Placas de cielo raso desmontable. Elige una para cotizarla o conocer más detalles.</p>
+        <p class="lead-in">Placas de cielo raso desmontable. Toca una para ver sus fotos y características, o cotízala directamente.</p>
         <ul class="products" id="productList"></ul>
       </div>
     </section>
@@ -361,12 +379,32 @@
   </div>
 </footer>
 
+<!-- Visor de galería -->
 <dialog class="lb" id="lb" aria-label="Imagen ampliada">
   <button class="lb-close" id="lbClose" aria-label="Cerrar">×</button>
   <button class="lb-btn prev" id="lbPrev" aria-label="Anterior">‹</button>
   <img id="lbImg" alt="">
   <p id="lbCap"></p>
   <button class="lb-btn next" id="lbNext" aria-label="Siguiente">›</button>
+</dialog>
+
+<!-- Ficha rápida de producto (modal) -->
+<dialog class="pm" id="pm" aria-label="Ficha de producto">
+  <div class="pm-head">
+    <h3 id="pmTitle"></h3>
+    <button class="pm-close" id="pmClose" aria-label="Cerrar">×</button>
+  </div>
+  <div class="pm-body">
+    <div class="pm-media">
+      <div class="pm-media-main" id="pmMediaMain"></div>
+      <div class="pm-thumbs" id="pmThumbs"></div>
+    </div>
+    <div class="pm-info">
+      <ul class="pm-specs" id="pmSpecs"></ul>
+      <p class="desc" id="pmDesc"></p>
+      <a class="btn" id="pmQuote" href="#contacto">Cotizar esta placa</a>
+    </div>
+  </div>
 </dialog>
 
 <a class="wa" id="wa" href="#" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
@@ -381,9 +419,8 @@
    CONFIGURACIÓN: edita aquí tus datos
    ========================================================== */
 const CONFIG = {
-  whatsapp: "573214818481",   // Ej.: "573001234567" (código de país + número, sin + ni espacios). Vacío = botón oculto
-  email: "",      // Ej.: "ventas@plakol.com". Se usa si no hay WhatsApp
-  // Fotos de la galería: 10 fotos que muestran cómo quedó instalado. Las primeras 6 salen también en la vista previa de Inicio.
+  whatsapp: "573214818481",   // Código de país + número, sin + ni espacios. Vacío = botón oculto.
+  email: "",
   gallery: [
     {"src": "fotos/foto-01.jpg", "thumb": "miniaturas/foto-01.jpg", "w": 720, "h": 595, "alt": "Cielo raso instalado con placas Plakol"},
     {"src": "fotos/foto-02.jpg", "thumb": "miniaturas/foto-02.jpg", "w": 720, "h": 480, "alt": "Cielo raso instalado con placas Plakol"},
@@ -398,17 +435,43 @@ const CONFIG = {
   ]
 };
 
-// Productos. Cada foto vive en la carpeta productos/ (cuadrada, 640 px).
-// La ficha de características de cada uno vive en la raíz del repositorio: <id>.html
+/* Productos. "images" es la lista de fotos que se ven en la ficha (modal).
+   Si solo tienes una foto por producto, deja un solo elemento en el arreglo.
+   Para agregar más fotos de la misma placa, añade más rutas al arreglo "images". */
 const PRODUCTS = [
-  { id: "barroco",  name: "Placa Barroco",        img: "productos/barroco.jpg" },
-  { id: "rosa",     name: "Placa Centro Rosa",    img: "productos/rosa.jpg" },
-  { id: "greco",    name: "Placa Greco",          img: "productos/greco.jpg" },
-  { id: "infinity", name: "Placa Infinity",       img: "productos/infinity.jpg" },
-  { id: "micro",    name: "Placa Microperforada", img: "productos/micro.jpg" }
+  {
+    id: "barroco", name: "Placa Barroco",
+    images: ["productos/barroco.jpg"],
+    measures: "600 x 600 mm",
+    desc: "Placa decorativa de relieve clásico, ideal para espacios que buscan un acabado elegante y atemporal en salas, recepciones y áreas sociales."
+  },
+  {
+    id: "rosa", name: "Placa Centro Rosa",
+    images: ["productos/rosa.jpg"],
+    measures: "600 x 600 mm",
+    desc: "Placa con motivo central tipo roseta, pensada como pieza destacada del cielo raso, perfecta para combinar con luminarias decorativas."
+  },
+  {
+    id: "greco", name: "Placa Greco",
+    images: ["productos/greco.jpg"],
+    measures: "600 x 600 mm",
+    desc: "Diseño de líneas geométricas inspirado en el estilo griego, aporta un acabado sobrio y ordenado a cualquier ambiente."
+  },
+  {
+    id: "infinity", name: "Placa Infinity",
+    images: ["productos/infinity.jpg"],
+    measures: "600 x 600 mm",
+    desc: "Placa de líneas continuas y modernas, pensada para espacios contemporáneos como oficinas, locales comerciales y hoteles."
+  },
+  {
+    id: "micro", name: "Placa Microperforada",
+    images: ["productos/micro.jpg"],
+    measures: "600 x 600 mm",
+    desc: "Placa con microperforaciones que favorecen la acústica del espacio, recomendada para oficinas, auditorios y salas de reunión."
+  }
 ];
-const PREVIEW_COUNT = 3;   // cuántos productos se muestran en Inicio
-const GALLERY_PREVIEW_COUNT = 6; // cuántas fotos se muestran en Inicio
+const PREVIEW_COUNT = 3;
+const GALLERY_PREVIEW_COUNT = 6;
 
 const VALUES = [
   { name: "Calidad", text: "Cada placa que fabricamos refleja nuestro estándar de excelencia, desde la selección de las materias primas hasta el producto terminado. Es muy importante aportar confianza a nuestros clientes a través de nuestros productos." },
@@ -417,13 +480,9 @@ const VALUES = [
   { name: "Funcionalidad", text: "Cada producto elaborado por Plakol está diseñado para una instalación fácil, en la que la practicidad y el ahorro de tiempo en la instalación sean un beneficio para nuestros clientes." }
 ];
 
-/* ---------- Utilidades ---------- */
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
-/* ==========================================================
-   Navegación por páginas: solo una sección visible a la vez
-   ========================================================== */
 const PAGES = ["inicio", "nosotros", "productos", "galeria", "contacto"];
 const links = $$("nav.main a.link");
 const burger = $("#burger"), menu = $("#menu");
@@ -442,7 +501,6 @@ burger.addEventListener("click", () => {
   burger.setAttribute("aria-expanded", open);
 });
 
-// Un solo listener: cualquier enlace "#pagina" cambia de sección (sin salto de scroll del navegador).
 document.addEventListener("click", e => {
   const q = e.target.closest("a.q");
   if (q) sel.value = PRODUCTS.find(x => x.id === q.dataset.id).name;
@@ -452,6 +510,7 @@ document.addEventListener("click", e => {
     const id = a.getAttribute("href").slice(1);
     if (PAGES.includes(id)) {
       e.preventDefault();
+      pm.close();
       location.hash = id;
       showPage(id);
       menu.classList.remove("open");
@@ -460,7 +519,6 @@ document.addEventListener("click", e => {
   }
 });
 
-/* ---------- Pestañas de valores ---------- */
 const tablist = $("#tablist"), panel = $("#tabpanel");
 VALUES.forEach((v, i) => {
   const b = document.createElement("button");
@@ -481,24 +539,28 @@ function selectTab(i, focus) {
 }
 selectTab(0);
 
-/* ---------- Productos ---------- */
 const sel = $("#selProducto");
 PRODUCTS.forEach(p => sel.add(new Option(p.name, p.name)));
 sel.add(new Option("Aún no lo sé, necesito asesoría", "Necesito asesoría para elegir"));
 sel.value = "Necesito asesoría para elegir";
 
+function imgWithFallback(src, alt, extraAttrs) {
+  return `<img src="${src}" alt="${alt}" ${extraAttrs || ""} onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'noimg',textContent:'${alt.replace(/'/g, "")}'}))">`;
+}
+
 function productCard(p) {
   const li = document.createElement("li");
   li.className = "card";
-  const ficha = `${p.id}.html`;
   li.innerHTML = `
-    <a class="pic" href="${ficha}" target="_blank" rel="noopener"><img src="${p.img}" alt="Foto de la ${p.name}" width="640" height="640" loading="lazy" decoding="async"></a>
+    <button type="button" class="pic" data-id="${p.id}" aria-label="Ver ficha de ${p.name}">
+      ${imgWithFallback(p.images[0], "Foto de la " + p.name, 'width="640" height="640" loading="lazy" decoding="async"')}
+    </button>
     <div class="info">
-      <a class="titlelink" href="${ficha}" target="_blank" rel="noopener"><h3>${p.name}</h3></a>
-      <p>Placa de cielo raso desmontable</p>
+      <button type="button" class="titlelink" data-id="${p.id}"><h3>${p.name}</h3></button>
+      <p>Placa de cielo raso desmontable · ${p.measures}</p>
       <div class="row">
         <a class="q" href="#contacto" data-id="${p.id}">Cotizar</a>
-        <a class="leer" href="${ficha}" target="_blank" rel="noopener">Ver características</a>
+        <button type="button" class="leer" data-id="${p.id}">Ver características</button>
       </div>
     </div>`;
   return li;
@@ -507,12 +569,60 @@ const productList = $("#productList"), productPreview = $("#productPreview");
 PRODUCTS.forEach(p => productList.appendChild(productCard(p)));
 PRODUCTS.slice(0, PREVIEW_COUNT).forEach(p => productPreview.appendChild(productCard(p)));
 
-/* ---------- Galería y visor ---------- */
+document.addEventListener("click", e => {
+  const t = e.target.closest(".pic, .titlelink, .leer");
+  if (t) openProductModal(t.dataset.id);
+});
+
+const pm = $("#pm"), pmMediaMain = $("#pmMediaMain"), pmThumbs = $("#pmThumbs");
+let pmImages = [], pmIndex = 0;
+
+function openProductModal(id) {
+  const p = PRODUCTS.find(x => x.id === id);
+  if (!p) return;
+  pmImages = p.images;
+  pmIndex = 0;
+
+  $("#pmTitle").textContent = p.name;
+  $("#pmSpecs").innerHTML = `
+    <li><b>Medidas</b><span>${p.measures}</span></li>
+    <li><b>Uso</b><span>Cielo raso desmontable</span></li>
+    <li><b>Instalación</b><span>Fácil, sobre perfilería estándar</span></li>`;
+  $("#pmDesc").textContent = p.desc;
+  $("#pmQuote").dataset.id = p.id;
+
+  pmThumbs.innerHTML = "";
+  p.images.forEach((src, i) => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = i === 0 ? "active" : "";
+    b.innerHTML = imgWithFallback(src, p.name + " miniatura " + (i + 1));
+    b.addEventListener("click", () => setPmImage(i));
+    pmThumbs.appendChild(b);
+  });
+  pmThumbs.style.display = p.images.length > 1 ? "flex" : "none";
+
+  setPmImage(0);
+  if (!pm.open) pm.showModal();
+}
+function setPmImage(i) {
+  pmIndex = i;
+  pmMediaMain.innerHTML = imgWithFallback(pmImages[i], $("#pmTitle").textContent);
+  $$(".pm-thumbs button").forEach((b, j) => b.classList.toggle("active", j === i));
+}
+$("#pmClose").addEventListener("click", () => pm.close());
+pm.addEventListener("click", e => { if (e.target === pm) pm.close(); });
+$("#pmQuote").addEventListener("click", () => {
+  const p = PRODUCTS.find(x => x.id === $("#pmQuote").dataset.id);
+  if (p) sel.value = p.name;
+  pm.close();
+});
+
 const gal = $("#gallery"), galPreview = $("#galleryPreview"), lb = $("#lb");
 let cur = 0;
 function galleryFigure(g, i) {
   const f = document.createElement("figure");
-  f.innerHTML = `<button type="button" aria-label="Ampliar foto ${i + 1}: ${g.alt}"><img src="${g.thumb || g.src}" width="${g.w}" height="${g.h}" alt="${g.alt}" loading="lazy" decoding="async"></button>`;
+  f.innerHTML = `<button type="button" aria-label="Ampliar foto ${i + 1}: ${g.alt}">${imgWithFallback(g.thumb || g.src, g.alt, `width="${g.w}" height="${g.h}" loading="lazy" decoding="async"`)}</button>`;
   f.firstElementChild.addEventListener("click", () => openLb(i));
   return f;
 }
@@ -532,7 +642,6 @@ $("#lbNext").addEventListener("click", () => openLb(cur + 1));
 lb.addEventListener("click", e => { if (e.target === lb) lb.close(); });
 lb.addEventListener("keydown", e => { if (e.key === "ArrowLeft") openLb(cur - 1); if (e.key === "ArrowRight") openLb(cur + 1); });
 
-/* ---------- Formulario de cotización ---------- */
 const wa = $("#wa");
 if (CONFIG.whatsapp) { wa.href = `https://wa.me/${CONFIG.whatsapp}`; wa.classList.add("show"); }
 $("#quote").addEventListener("submit", e => {
@@ -553,7 +662,6 @@ $("#quote").addEventListener("submit", e => {
   }
 });
 
-/* ---------- Volver arriba ---------- */
 const totop = $("#totop");
 addEventListener("scroll", () => totop.classList.toggle("show", scrollY > 700), { passive: true });
 totop.addEventListener("click", () => scrollTo({ top: 0 }));
