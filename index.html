@@ -381,7 +381,7 @@
    CONFIGURACIÓN: edita aquí tus datos
    ========================================================== */
 const CONFIG = {
-  whatsapp: "",   // Ej.: "573001234567" (código de país + número, sin + ni espacios). Vacío = botón oculto
+  whatsapp: "573214818481",   // Ej.: "573001234567" (código de país + número, sin + ni espacios). Vacío = botón oculto
   email: "",      // Ej.: "ventas@plakol.com". Se usa si no hay WhatsApp
   // Fotos de la galería: 10 fotos que muestran cómo quedó instalado. Las primeras 6 salen también en la vista previa de Inicio.
   gallery: [
@@ -399,7 +399,7 @@ const CONFIG = {
 };
 
 // Productos. Cada foto vive en la carpeta productos/ (cuadrada, 640 px).
-// La ficha de características de cada uno vive en caracteristicas/<id>.html
+// La ficha de características de cada uno vive en la raíz del repositorio: <id>.html
 const PRODUCTS = [
   { id: "barroco",  name: "Placa Barroco",        img: "productos/barroco.jpg" },
   { id: "rosa",     name: "Placa Centro Rosa",    img: "productos/rosa.jpg" },
@@ -490,7 +490,7 @@ sel.value = "Necesito asesoría para elegir";
 function productCard(p) {
   const li = document.createElement("li");
   li.className = "card";
-  const ficha = `caracteristicas/${p.id}.html`;
+  const ficha = `${p.id}.html`;
   li.innerHTML = `
     <a class="pic" href="${ficha}" target="_blank" rel="noopener"><img src="${p.img}" alt="Foto de la ${p.name}" width="640" height="640" loading="lazy" decoding="async"></a>
     <div class="info">
