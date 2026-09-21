@@ -144,7 +144,7 @@
   .tabpanel p { font-size: 1.15rem; color: #DCE6F5; max-width: 38rem; margin: 0; }
 
   /* Productos */
-  .products { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.6rem; list-style: none; margin: 0; padding: 0; }
+  .products { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.6rem; list-style: none; margin: 0; padding: 0; }
   .card { background: #fff; border: 1px solid var(--line); display: flex; flex-direction: column; transition: box-shadow .2s, transform .2s, border-color .2s; }
   .card:hover { box-shadow: 0 14px 30px rgba(6,38,79,.16); transform: translateY(-4px); border-color: var(--blue-light); }
   .card .pic { aspect-ratio: 1; background: #E9EDF3; overflow: hidden; }
@@ -460,13 +460,14 @@ const CONFIG = {
   ]
 };
 
-// Productos. Para usar una foto real en lugar del dibujo, agrega img: "fotos/greco.jpg"
+// Productos. Cada foto vive en la carpeta productos/ (cuadrada, 640 px).
+// Para cambiar una foto, reemplaza el archivo con el mismo nombre.
 const PRODUCTS = [
-  { id: "barroco",  name: "Placa Barroco",        url: "https://plakol.com/producto/placa-barroco/" },
-  { id: "rosa",     name: "Placa Centro Rosa",    url: "https://plakol.com/producto/placa-centro-rosa/" },
-  { id: "greco",    name: "Placa Greco",          url: "https://plakol.com/producto/placa-greco/" },
-  { id: "infinity", name: "Placa Infinity",       url: "https://plakol.com/producto/placa-infinity/" },
-  { id: "micro",    name: "Placa Microperforada", url: "https://plakol.com/producto/placa-microperforada/" }
+  { id: "barroco",  name: "Placa Barroco",        img: "productos/barroco.jpg",  url: "https://plakol.com/producto/placa-barroco/" },
+  { id: "rosa",     name: "Placa Centro Rosa",    img: "productos/rosa.jpg",     url: "https://plakol.com/producto/placa-centro-rosa/" },
+  { id: "greco",    name: "Placa Greco",          img: "productos/greco.jpg",    url: "https://plakol.com/producto/placa-greco/" },
+  { id: "infinity", name: "Placa Infinity",       img: "productos/infinity.jpg", url: "https://plakol.com/producto/placa-infinity/" },
+  { id: "micro",    name: "Placa Microperforada", img: "productos/micro.jpg",    url: "https://plakol.com/producto/placa-microperforada/" }
 ];
 
 const VALUES = [
@@ -477,32 +478,10 @@ const VALUES = [
 ];
 
 /* ==========================================================
-   Dibujo de las placas: yeso con grano y relieve
+   Textura de yeso con grano para el fondo de la portada
    ========================================================== */
 const SHAPES = {
-  liso: ``,
-  barroco: `
-    <path d="M0 34A34 34 0 0 0 34 0M0 22A22 22 0 0 0 22 0M120 34A34 34 0 0 1 86 0M120 22A22 22 0 0 1 98 0M0 86A34 34 0 0 1 34 120M0 98A22 22 0 0 1 22 120M120 86A34 34 0 0 0 86 120M120 98A22 22 0 0 0 98 120"/>
-    <path d="M60 20L100 60L60 100L20 60Z"/>
-    <path d="M60 36C74 44 76 46 84 60C76 74 74 76 60 84C46 76 44 74 36 60C44 46 46 44 60 36Z"/>
-    <circle cx="60" cy="60" r="8"/>`,
-  rosa: `
-    <g transform="translate(60 60)">
-      <ellipse cx="0" cy="-23" rx="9" ry="20"/><ellipse cx="0" cy="-23" rx="9" ry="20" transform="rotate(45)"/>
-      <ellipse cx="0" cy="-23" rx="9" ry="20" transform="rotate(90)"/><ellipse cx="0" cy="-23" rx="9" ry="20" transform="rotate(135)"/>
-      <ellipse cx="0" cy="-23" rx="9" ry="20" transform="rotate(180)"/><ellipse cx="0" cy="-23" rx="9" ry="20" transform="rotate(225)"/>
-      <ellipse cx="0" cy="-23" rx="9" ry="20" transform="rotate(270)"/><ellipse cx="0" cy="-23" rx="9" ry="20" transform="rotate(315)"/>
-      <circle r="7" fill="#F9FAFC"/>
-    </g>
-    <rect x="7" y="7" width="106" height="106"/>`,
-  greco: `
-    <path d="M12 12H108V108H12ZM24 24H96V96H24Z"/>
-    <path d="M36 36H84V84H48V56H72V72H60"/>`,
-  infinity: `
-    <path d="M60 60C75 28 108 28 108 60C108 92 75 92 60 60C45 28 12 28 12 60C12 92 45 92 60 60Z"/>
-    <path d="M60 60C70 40 92 40 92 60C92 80 70 80 60 60C50 40 28 40 28 60C28 80 50 80 60 60Z"/>
-    <path d="M60 60C64 52 76 52 76 60C76 68 64 68 60 60C56 52 44 52 44 60C44 68 56 68 60 60Z"/>`,
-  micro: (() => { let d = ""; for (let y = 6; y < 120; y += 10) for (let x = 6; x < 120; x += 10) d += `<circle cx="${x}" cy="${y}" r="1.7"/>`; return `@dots` + d; })()
+  liso: ``   // textura lisa de la portada
 };
 
 function tileSVG(key) {
@@ -537,7 +516,7 @@ const uriCache = {};
 function tileURI(key) {
   return uriCache[key] ||= "data:image/svg+xml;utf8," + encodeURIComponent(tileSVG(key));
 }
-const imgOf = p => p.img || tileURI(p.id);
+const imgOf = p => p.img;
 
 /* ---------- Utilidades ---------- */
 const $ = (s, r = document) => r.querySelector(s);
@@ -592,7 +571,7 @@ PRODUCTS.forEach(p => {
   const li = document.createElement("li");
   li.className = "card";
   li.innerHTML = `
-    <div class="pic"><img src="${imgOf(p)}" alt="Diseño de la ${p.name}" loading="lazy"></div>
+    <div class="pic"><img src="${imgOf(p)}" alt="Foto de la ${p.name}" width="640" height="640" loading="lazy" decoding="async"></div>
     <div class="info">
       <h3>${p.name}</h3>
       <p>Placa de cielo raso desmontable</p>
