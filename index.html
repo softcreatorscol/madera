@@ -43,6 +43,9 @@
   h2 { font-size: clamp(1.9rem, 4vw, 2.7rem); font-weight: 800; color: var(--navy); margin-bottom: 1.2rem; }
   h3 { font-size: 1.25rem; font-weight: 700; color: var(--navy); }
 
+  /* Cada sección principal es una "página": solo una visible a la vez */
+  .page[hidden] { display: none !important; }
+
   .btn {
     display: inline-block; cursor: pointer; text-decoration: none; text-align: center;
     font-family: var(--head); font-weight: 700; font-size: .98rem;
@@ -63,13 +66,9 @@
   .topbar a:hover { text-decoration: underline; }
 
   header.site { position: sticky; top: 0; z-index: 60; background: #fff; box-shadow: 0 2px 12px rgba(6,38,79,.12); }
-  header.site .wrap { display: flex; align-items: center; justify-content: space-between; min-height: 72px; gap: 1rem; }
+  header.site .wrap { display: flex; align-items: center; justify-content: space-between; min-height: 76px; gap: 1rem; }
   .logo { display: flex; align-items: center; gap: .7rem; text-decoration: none; }
-  .logo-mark { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; width: 34px; height: 34px; }
-  .logo-mark i { background: var(--blue); display: block; }
-  .logo-mark i:last-child { background: var(--orange); }
-  .logo-text { font-family: var(--head); font-weight: 800; font-size: 1.6rem; color: var(--blue); letter-spacing: .02em; line-height: 1; }
-  .logo-text small { display: block; font-weight: 600; font-size: .62rem; letter-spacing: .12em; color: var(--gray); margin-top: 3px; }
+  .logo-img { height: 52px; width: auto; display: block; }
 
   nav.main { display: flex; align-items: center; gap: .2rem; }
   nav.main a.link { font-family: var(--head); font-weight: 600; font-size: .93rem; color: var(--ink); text-decoration: none; padding: .55rem .85rem; border-bottom: 3px solid transparent; }
@@ -89,13 +88,10 @@
   }
 
   /* ---- Inicio ---- */
-  .hero { position: relative; color: #fff; background-color: #E7ECF3; overflow: hidden; }
-  .hero-bg { position: absolute; inset: 0; background-size: 150px 150px; }
+  .hero { position: relative; color: #fff; background-color: #0B2A52; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; background: url('fotos/foto-39.jpg') center 30%/cover no-repeat; }
   .hero-bg::after { content: ""; position: absolute; inset: 0;
-    background:
-      radial-gradient(circle at 78% 30%, rgba(255,236,190,.95) 0 8px, rgba(255,226,160,.55) 9px, rgba(255,226,160,0) 190px),
-      radial-gradient(circle at 92% 78%, rgba(255,236,190,.9) 0 7px, rgba(255,226,160,.45) 8px, rgba(255,226,160,0) 160px),
-      linear-gradient(100deg, rgba(6,38,79,.96) 0, rgba(6,38,79,.93) 42%, rgba(11,76,156,.55) 72%, rgba(11,76,156,.15) 100%);
+    background: linear-gradient(100deg, rgba(6,38,79,.94) 0, rgba(6,38,79,.90) 42%, rgba(11,76,156,.62) 72%, rgba(11,76,156,.30) 100%);
   }
   .hero .wrap { position: relative; padding: clamp(4rem, 9vw, 7.5rem) 0 clamp(7rem, 11vw, 9rem); }
   .hero h1 { font-size: clamp(2.6rem, 6.5vw, 4.6rem); font-weight: 800; max-width: 12ch; letter-spacing: -.01em; }
@@ -147,26 +143,26 @@
   .products { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.6rem; list-style: none; margin: 0; padding: 0; }
   .card { background: #fff; border: 1px solid var(--line); display: flex; flex-direction: column; transition: box-shadow .2s, transform .2s, border-color .2s; }
   .card:hover { box-shadow: 0 14px 30px rgba(6,38,79,.16); transform: translateY(-4px); border-color: var(--blue-light); }
-  .card .pic { aspect-ratio: 1; background: #E9EDF3; overflow: hidden; }
+  .card .pic { aspect-ratio: 1; background: #E9EDF3; overflow: hidden; display: block; }
   .card .pic img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s; }
   .card:hover .pic img { transform: scale(1.06); }
   .card .info { padding: 1rem 1.1rem 1.2rem; display: flex; flex-direction: column; gap: .3rem; flex: 1; }
+  .card .info a.titlelink { text-decoration: none; }
   .card .info p { margin: 0; font-size: .92rem; color: var(--gray); }
   .card .row { margin-top: auto; padding-top: .8rem; display: flex; gap: .8rem; flex-wrap: wrap; align-items: center; }
   .card .row a.q { background: var(--blue); color: #fff; padding: .55rem .9rem; text-decoration: none; font-family: var(--head); font-weight: 700; font-size: .85rem; border-radius: 3px; }
   .card .row a.q:hover { background: var(--orange); }
-  .card .row a { font-size: .9rem; font-weight: 600; }
+  .card .row a.leer { font-size: .9rem; font-weight: 600; }
+  .preview-foot { margin-top: 2rem; }
 
   /* Galería */
   .gallery-sec { background: var(--bg); border-top: 1px solid var(--line); }
   .gallery { column-width: 250px; column-gap: 12px; }
   .gallery figure { margin: 0 0 12px; break-inside: avoid; background: #E3E9F2; overflow: hidden; }
-  .gallery figure[hidden] { display: none; }
   .gallery button { all: unset; display: block; width: 100%; cursor: zoom-in; }
   .gallery button:focus-visible { outline: 3px solid var(--orange); outline-offset: -3px; }
   .gallery img { width: 100%; height: auto; transition: transform .4s; }
   .gallery button:hover img { transform: scale(1.05); }
-  .gallery-more { text-align: center; margin-top: 1.8rem; }
   dialog.lb { border: 0; padding: 0; background: transparent; max-width: 96vw; max-height: 96vh; overflow: visible; }
   dialog.lb::backdrop { background: rgba(4,20,44,.88); }
   dialog.lb img { max-width: 92vw; max-height: 80vh; margin: auto; border: 6px solid #fff; }
@@ -219,8 +215,7 @@
 <header class="site">
   <div class="wrap">
     <a class="logo" href="#inicio" aria-label="Plakol, inicio">
-      <span class="logo-mark" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-      <span class="logo-text">PLAKOL<small>CIELOS RASOS</small></span>
+      <img class="logo-img" src="logo.png" alt="Plakol, prefabricados de fibrosulf">
     </a>
     <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><span></span></button>
     <nav class="main" id="menu" aria-label="Principal">
@@ -236,101 +231,126 @@
 
 <main id="contenido">
 
-  <!-- INICIO -->
-  <section class="hero" id="inicio">
-    <div class="hero-bg" id="heroBg"></div>
-    <div class="wrap">
-      <h1>Plakol, cielos rasos que transforman.</h1>
-      <p>Somos una empresa especializada en la fabricación de placas para cielos rasos, con un firme compromiso hacia la calidad, la innovación tecnológica y la excelencia en cada uno de nuestros productos.</p>
-      <div class="actions">
-        <a class="btn" href="#productos">Ver productos</a>
-        <a class="btn outline" href="#contacto">Hablar con un asesor</a>
+  <!-- ======================= INICIO ======================= -->
+  <section class="page" id="inicio">
+    <div class="hero">
+      <div class="hero-bg"></div>
+      <div class="wrap">
+        <h1>Plakol, cielos rasos que transforman.</h1>
+        <p>Somos una empresa especializada en la fabricación de placas para cielos rasos, con un firme compromiso hacia la calidad, la innovación tecnológica y la excelencia en cada uno de nuestros productos.</p>
+        <div class="actions">
+          <a class="btn" href="#productos">Ver productos</a>
+          <a class="btn outline" href="#contacto">Hablar con un asesor</a>
+        </div>
       </div>
     </div>
+
+    <div class="facts">
+      <div class="wrap">
+        <ul>
+          <li><strong>6 referencias</strong><span>Hechas según lo que piden nuestros clientes y el mercado.</span></li>
+          <li><strong>Hechas en Bucaramanga</strong><span>Diseñamos y producimos en Colombia.</span></li>
+          <li><strong>Instalación fácil</strong><span>Placas ultralivianas que ahorran tiempo en obra.</span></li>
+          <li><strong>Materiales biodegradables</strong><span>Procesos sostenibles en cada placa.</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <section class="block">
+      <div class="wrap">
+        <h2>Nuestros productos</h2>
+        <p class="lead-in">Un vistazo a nuestras placas de cielo raso desmontable.</p>
+        <ul class="products" id="productPreview"></ul>
+        <p class="preview-foot"><a class="btn blue" href="#productos">Ver todos los productos</a></p>
+      </div>
+    </section>
+
+    <section class="block gallery-sec">
+      <div class="wrap">
+        <h2>Galería</h2>
+        <p class="lead-in">Así quedan instaladas nuestras placas.</p>
+        <div class="gallery" id="galleryPreview"></div>
+        <p class="preview-foot"><a class="btn blue" href="#galeria">Ver toda la galería</a></p>
+      </div>
+    </section>
   </section>
 
-  <div class="facts">
-    <div class="wrap">
-      <ul>
-        <li><strong>6 referencias</strong><span>Hechas según lo que piden nuestros clientes y el mercado.</span></li>
-        <li><strong>Hechas en Bucaramanga</strong><span>Diseñamos y producimos en Colombia.</span></li>
-        <li><strong>Instalación fácil</strong><span>Placas ultralivianas que ahorran tiempo en obra.</span></li>
-        <li><strong>Materiales biodegradables</strong><span>Procesos sostenibles en cada placa.</span></li>
-      </ul>
-    </div>
-  </div>
+  <!-- ======================= NOSOTROS ======================= -->
+  <section class="page" id="nosotros" hidden>
+    <section class="block">
+      <div class="wrap">
+        <div class="split">
+          <div>
+            <h2>¿Quiénes somos?</h2>
+            <p>Somos una empresa especializada en la fabricación de placas para cielos rasos, con un firme compromiso hacia la calidad, la innovación tecnológica y la excelencia en cada uno de nuestros productos.</p>
+            <p>Actualmente contamos con 6 referencias, elaboradas con base en lo que nuestros clientes solicitan y en las necesidades identificadas del mercado.</p>
+            <p>Estamos ubicados en la ciudad de Bucaramanga y contamos con personal altamente capacitado para que nuestros clientes tengan la mejor asesoría.</p>
+          </div>
+          <div class="history">
+            <h3>Nuestra historia</h3>
+            <p>En PLAKOL nacimos con una convicción clara: Colombia tiene el talento, la materia prima y la capacidad de fabricar productos de calidad. Desde Bucaramanga diseñamos y producimos cielos rasos desmontables y placas decorativas ultralivianas, que llegan a hogares, hoteles, oficinas y grandes superficies.</p>
+            <p>A lo largo de los años hemos crecido de manera sostenida, ampliando nuestra capacidad productiva y diversificando nuestra línea de productos para atender las demandas de un mercado en constante evolución.</p>
+            <p>Trabajamos cada día para ser el aliado estratégico de quienes construyen y diseñan espacios. Nos impulsa la convicción de que un buen cielo raso no solo cubre un espacio, sino que lo define, lo protege y lo transforma.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <!-- NOSOTROS -->
-  <section class="block" id="nosotros">
-    <div class="wrap">
-      <div class="split">
+    <section class="block values" aria-labelledby="valores-titulo">
+      <div class="wrap">
+        <h2 id="valores-titulo">Valores corporativos</h2>
+        <div class="tabs">
+          <div class="tablist" role="tablist" aria-label="Valores corporativos" id="tablist"></div>
+          <div class="tabpanel" role="tabpanel" id="tabpanel" tabindex="0" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ======================= PRODUCTOS ======================= -->
+  <section class="page" id="productos" hidden>
+    <section class="block">
+      <div class="wrap">
+        <h2>Productos</h2>
+        <p class="lead-in">Placas de cielo raso desmontable. Elige una para cotizarla o conocer más detalles.</p>
+        <ul class="products" id="productList"></ul>
+      </div>
+    </section>
+  </section>
+
+  <!-- ======================= GALERÍA ======================= -->
+  <section class="page" id="galeria" hidden>
+    <section class="block gallery-sec">
+      <div class="wrap">
+        <h2>Galería</h2>
+        <p class="lead-in">Instalaciones, detalles y placas fabricadas en Bucaramanga. Toca una foto para verla en grande.</p>
+        <div class="gallery" id="gallery"></div>
+      </div>
+    </section>
+  </section>
+
+  <!-- ======================= CONTACTO ======================= -->
+  <section class="page" id="contacto" hidden>
+    <section class="block contact">
+      <div class="wrap contact-grid">
         <div>
-          <h2>¿Quiénes somos?</h2>
-          <p>Somos una empresa especializada en la fabricación de placas para cielos rasos, con un firme compromiso hacia la calidad, la innovación tecnológica y la excelencia en cada uno de nuestros productos.</p>
-          <p>Actualmente contamos con 6 referencias, elaboradas con base en lo que nuestros clientes solicitan y en las necesidades identificadas del mercado.</p>
-          <p>Estamos ubicados en la ciudad de Bucaramanga y contamos con personal altamente capacitado para que nuestros clientes tengan la mejor asesoría.</p>
+          <h2>Contacto</h2>
+          <p>Cuéntanos qué espacio quieres transformar. Nuestro equipo te asesora para elegir la placa que mejor se ajusta a tu proyecto.</p>
+          <address>Bucaramanga, Santander, Colombia</address>
+          <p>También puedes escribirnos desde <a href="https://plakol.com/contacto/" target="_blank" rel="noopener" style="color:#FFC08F">plakol.com/contacto</a>.</p>
         </div>
-        <div class="history">
-          <h3>Nuestra historia</h3>
-          <p>En PLAKOL nacimos con una convicción clara: Colombia tiene el talento, la materia prima y la capacidad de fabricar productos de calidad. Desde Bucaramanga diseñamos y producimos cielos rasos desmontables y placas decorativas ultralivianas, que llegan a hogares, hoteles, oficinas y grandes superficies.</p>
-          <p>A lo largo de los años hemos crecido de manera sostenida, ampliando nuestra capacidad productiva y diversificando nuestra línea de productos para atender las demandas de un mercado en constante evolución.</p>
-          <p>Trabajamos cada día para ser el aliado estratégico de quienes construyen y diseñan espacios. Nos impulsa la convicción de que un buen cielo raso no solo cubre un espacio, sino que lo define, lo protege y lo transforma.</p>
-        </div>
+        <form class="quote" id="quote" novalidate>
+          <div class="two">
+            <label>Nombre<input name="nombre" required autocomplete="name"></label>
+            <label>Teléfono<input name="telefono" type="tel" autocomplete="tel"></label>
+          </div>
+          <label>Placa de interés<select name="producto" id="selProducto"></select></label>
+          <label>Mensaje<textarea name="mensaje" rows="4" placeholder="Ej.: Necesito cielo raso para una oficina de 80 m²"></textarea></label>
+          <button class="btn" type="submit">Enviar solicitud</button>
+          <p id="estado" role="status" aria-live="polite"></p>
+        </form>
       </div>
-    </div>
-  </section>
-
-  <section class="block values" aria-labelledby="valores-titulo">
-    <div class="wrap">
-      <h2 id="valores-titulo">Valores corporativos</h2>
-      <div class="tabs">
-        <div class="tablist" role="tablist" aria-label="Valores corporativos" id="tablist"></div>
-        <div class="tabpanel" role="tabpanel" id="tabpanel" tabindex="0" aria-live="polite"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PRODUCTOS -->
-  <section class="block" id="productos">
-    <div class="wrap">
-      <h2>Productos</h2>
-      <p class="lead-in">Placas de cielo raso desmontable. Elige una para cotizarla o conocer más detalles.</p>
-      <ul class="products" id="productList"></ul>
-    </div>
-  </section>
-
-  <!-- GALERÍA -->
-  <section class="block gallery-sec" id="galeria">
-    <div class="wrap">
-      <h2>Galería</h2>
-      <p class="lead-in">Instalaciones, detalles y placas fabricadas en Bucaramanga. Toca una foto para verla en grande.</p>
-      <div class="gallery" id="gallery"></div>
-      <div class="gallery-more" id="galleryMore" hidden>
-        <button class="btn blue" type="button" id="moreBtn"></button>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACTO -->
-  <section class="block contact" id="contacto">
-    <div class="wrap contact-grid">
-      <div>
-        <h2>Contacto</h2>
-        <p>Cuéntanos qué espacio quieres transformar. Nuestro equipo te asesora para elegir la placa que mejor se ajusta a tu proyecto.</p>
-        <address>Bucaramanga, Santander, Colombia</address>
-        <p>También puedes escribirnos desde <a href="https://plakol.com/contacto/" target="_blank" rel="noopener" style="color:#FFC08F">plakol.com/contacto</a>.</p>
-      </div>
-      <form class="quote" id="quote" novalidate>
-        <div class="two">
-          <label>Nombre<input name="nombre" required autocomplete="name"></label>
-          <label>Teléfono<input name="telefono" type="tel" autocomplete="tel"></label>
-        </div>
-        <label>Placa de interés<select name="producto" id="selProducto"></select></label>
-        <label>Mensaje<textarea name="mensaje" rows="4" placeholder="Ej.: Necesito cielo raso para una oficina de 80 m²"></textarea></label>
-        <button class="btn" type="submit">Enviar solicitud</button>
-        <p id="estado" role="status" aria-live="polite"></p>
-      </form>
-    </div>
+    </section>
   </section>
 </main>
 
@@ -363,8 +383,7 @@
 const CONFIG = {
   whatsapp: "",   // Ej.: "573001234567" (código de país + número, sin + ni espacios). Vacío = botón oculto
   email: "",      // Ej.: "ventas@plakol.com". Se usa si no hay WhatsApp
-  // Fotos de la galería: "thumb" es la miniatura de la cuadrícula, "src" la foto grande, w/h el tamaño de la miniatura.
-  // Para agregar una: copia sus dos versiones a fotos/ y miniaturas/ y añade una línea aquí.
+  // Fotos de la galería: 10 fotos que muestran cómo quedó instalado. Las primeras 6 salen también en la vista previa de Inicio.
   gallery: [
     {"src": "fotos/foto-01.jpg", "thumb": "miniaturas/foto-01.jpg", "w": 720, "h": 595, "alt": "Cielo raso instalado con placas Plakol"},
     {"src": "fotos/foto-02.jpg", "thumb": "miniaturas/foto-02.jpg", "w": 720, "h": 480, "alt": "Cielo raso instalado con placas Plakol"},
@@ -375,100 +394,21 @@ const CONFIG = {
     {"src": "fotos/foto-07.jpg", "thumb": "miniaturas/foto-07.jpg", "w": 720, "h": 716, "alt": "Cielo raso instalado con placas Plakol"},
     {"src": "fotos/foto-08.jpg", "thumb": "miniaturas/foto-08.jpg", "w": 480, "h": 720, "alt": "Cielo raso instalado con placas Plakol"},
     {"src": "fotos/foto-09.jpg", "thumb": "miniaturas/foto-09.jpg", "w": 564, "h": 720, "alt": "Cielo raso instalado con placas Plakol"},
-    {"src": "fotos/foto-10.jpg", "thumb": "miniaturas/foto-10.jpg", "w": 720, "h": 545, "alt": "Cielo raso instalado con placas Plakol"},
-    {"src": "fotos/foto-11.jpg", "thumb": "miniaturas/foto-11.jpg", "w": 720, "h": 470, "alt": "Cielo raso instalado con placas Plakol"},
-    {"src": "fotos/foto-12.jpg", "thumb": "miniaturas/foto-12.jpg", "w": 720, "h": 480, "alt": "Cielo raso instalado con placas Plakol"},
-    {"src": "fotos/foto-13.jpg", "thumb": "miniaturas/foto-13.jpg", "w": 720, "h": 464, "alt": "Cielo raso instalado con placas Plakol"},
-    {"src": "fotos/foto-14.jpg", "thumb": "miniaturas/foto-14.jpg", "w": 720, "h": 710, "alt": "Cielo raso instalado con placas Plakol"},
-    {"src": "fotos/foto-15.jpg", "thumb": "miniaturas/foto-15.jpg", "w": 720, "h": 691, "alt": "Cielo raso instalado con placas Plakol"},
-    {"src": "fotos/foto-16.jpg", "thumb": "miniaturas/foto-16.jpg", "w": 720, "h": 480, "alt": "Cielo raso instalado con placas Plakol"},
-    {"src": "fotos/foto-17.jpg", "thumb": "miniaturas/foto-17.jpg", "w": 541, "h": 720, "alt": "Cielo raso instalado con placas Plakol"},
-    {"src": "fotos/foto-18.jpg", "thumb": "miniaturas/foto-18.jpg", "w": 495, "h": 720, "alt": "Cielo raso instalado con placas Plakol"},
-    {"src": "fotos/foto-19.jpg", "thumb": "miniaturas/foto-19.jpg", "w": 492, "h": 720, "alt": "Cielo raso instalado con placas Plakol"},
-    {"src": "fotos/foto-20.jpg", "thumb": "miniaturas/foto-20.jpg", "w": 629, "h": 720, "alt": "Cielo raso instalado con placas Plakol"},
-    {"src": "fotos/foto-21.jpg", "thumb": "miniaturas/foto-21.jpg", "w": 720, "h": 581, "alt": "Cielo raso instalado con placas Plakol"},
-    {"src": "fotos/foto-22.jpg", "thumb": "miniaturas/foto-22.jpg", "w": 480, "h": 720, "alt": "Cielo raso instalado con placas Plakol"},
-    {"src": "fotos/foto-23.jpg", "thumb": "miniaturas/foto-23.jpg", "w": 720, "h": 480, "alt": "Cielo raso instalado con placas Plakol"},
-    {"src": "fotos/foto-24.jpg", "thumb": "miniaturas/foto-24.jpg", "w": 720, "h": 427, "alt": "Cielo raso instalado con placas Plakol"},
-    {"src": "fotos/foto-25.jpg", "thumb": "miniaturas/foto-25.jpg", "w": 591, "h": 720, "alt": "Cielo raso instalado con placas Plakol"},
-    {"src": "fotos/foto-26.jpg", "thumb": "miniaturas/foto-26.jpg", "w": 720, "h": 480, "alt": "Cielo raso instalado con placas Plakol"},
-    {"src": "fotos/foto-27.jpg", "thumb": "miniaturas/foto-27.jpg", "w": 720, "h": 480, "alt": "Cielo raso instalado con placas Plakol"},
-    {"src": "fotos/foto-28.jpg", "thumb": "miniaturas/foto-28.jpg", "w": 480, "h": 720, "alt": "Instalación de placas Plakol"},
-    {"src": "fotos/foto-29.jpg", "thumb": "miniaturas/foto-29.jpg", "w": 451, "h": 720, "alt": "Instalación de placas Plakol"},
-    {"src": "fotos/foto-30.jpg", "thumb": "miniaturas/foto-30.jpg", "w": 720, "h": 480, "alt": "Instalación de placas Plakol"},
-    {"src": "fotos/foto-31.jpg", "thumb": "miniaturas/foto-31.jpg", "w": 720, "h": 480, "alt": "Instalación de placas Plakol"},
-    {"src": "fotos/foto-32.jpg", "thumb": "miniaturas/foto-32.jpg", "w": 720, "h": 480, "alt": "Instalación de placas Plakol"},
-    {"src": "fotos/foto-33.jpg", "thumb": "miniaturas/foto-33.jpg", "w": 720, "h": 480, "alt": "Instalación de placas Plakol"},
-    {"src": "fotos/foto-34.jpg", "thumb": "miniaturas/foto-34.jpg", "w": 720, "h": 480, "alt": "Instalación de placas Plakol"},
-    {"src": "fotos/foto-35.jpg", "thumb": "miniaturas/foto-35.jpg", "w": 480, "h": 720, "alt": "Instalación de placas Plakol"},
-    {"src": "fotos/foto-36.jpg", "thumb": "miniaturas/foto-36.jpg", "w": 720, "h": 480, "alt": "Instalación de placas Plakol"},
-    {"src": "fotos/foto-37.jpg", "thumb": "miniaturas/foto-37.jpg", "w": 495, "h": 720, "alt": "Instalación de placas Plakol"},
-    {"src": "fotos/foto-38.jpg", "thumb": "miniaturas/foto-38.jpg", "w": 427, "h": 720, "alt": "Instalación de placas Plakol"},
-    {"src": "fotos/foto-39.jpg", "thumb": "miniaturas/foto-39.jpg", "w": 487, "h": 720, "alt": "Instalación de placas Plakol"},
-    {"src": "fotos/foto-40.jpg", "thumb": "miniaturas/foto-40.jpg", "w": 480, "h": 720, "alt": "Instalación de placas Plakol"},
-    {"src": "fotos/foto-41.jpg", "thumb": "miniaturas/foto-41.jpg", "w": 475, "h": 720, "alt": "Instalación de placas Plakol"},
-    {"src": "fotos/foto-42.jpg", "thumb": "miniaturas/foto-42.jpg", "w": 720, "h": 480, "alt": "Instalación de placas Plakol"},
-    {"src": "fotos/foto-43.jpg", "thumb": "miniaturas/foto-43.jpg", "w": 720, "h": 480, "alt": "Instalación de placas Plakol"},
-    {"src": "fotos/foto-44.jpg", "thumb": "miniaturas/foto-44.jpg", "w": 720, "h": 480, "alt": "Instalación de placas Plakol"},
-    {"src": "fotos/foto-45.jpg", "thumb": "miniaturas/foto-45.jpg", "w": 720, "h": 480, "alt": "Instalación de placas Plakol"},
-    {"src": "fotos/foto-46.jpg", "thumb": "miniaturas/foto-46.jpg", "w": 720, "h": 462, "alt": "Instalación de placas Plakol"},
-    {"src": "fotos/foto-47.jpg", "thumb": "miniaturas/foto-47.jpg", "w": 480, "h": 720, "alt": "Detalle de placa Plakol"},
-    {"src": "fotos/foto-48.jpg", "thumb": "miniaturas/foto-48.jpg", "w": 480, "h": 720, "alt": "Detalle de placa Plakol"},
-    {"src": "fotos/foto-49.jpg", "thumb": "miniaturas/foto-49.jpg", "w": 522, "h": 720, "alt": "Detalle de placa Plakol"},
-    {"src": "fotos/foto-50.jpg", "thumb": "miniaturas/foto-50.jpg", "w": 480, "h": 720, "alt": "Detalle de placa Plakol"},
-    {"src": "fotos/foto-51.jpg", "thumb": "miniaturas/foto-51.jpg", "w": 480, "h": 720, "alt": "Detalle de placa Plakol"},
-    {"src": "fotos/foto-52.jpg", "thumb": "miniaturas/foto-52.jpg", "w": 480, "h": 720, "alt": "Detalle de placa Plakol"},
-    {"src": "fotos/foto-53.jpg", "thumb": "miniaturas/foto-53.jpg", "w": 480, "h": 720, "alt": "Detalle de placa Plakol"},
-    {"src": "fotos/foto-54.jpg", "thumb": "miniaturas/foto-54.jpg", "w": 480, "h": 720, "alt": "Detalle de placa Plakol"},
-    {"src": "fotos/foto-55.jpg", "thumb": "miniaturas/foto-55.jpg", "w": 480, "h": 720, "alt": "Detalle de placa Plakol"},
-    {"src": "fotos/foto-56.jpg", "thumb": "miniaturas/foto-56.jpg", "w": 480, "h": 720, "alt": "Detalle de placa Plakol"},
-    {"src": "fotos/foto-57.jpg", "thumb": "miniaturas/foto-57.jpg", "w": 472, "h": 720, "alt": "Detalle de placa Plakol"},
-    {"src": "fotos/foto-58.jpg", "thumb": "miniaturas/foto-58.jpg", "w": 540, "h": 720, "alt": "Placas Plakol"},
-    {"src": "fotos/foto-59.jpg", "thumb": "miniaturas/foto-59.jpg", "w": 540, "h": 720, "alt": "Placas Plakol"},
-    {"src": "fotos/foto-60.jpg", "thumb": "miniaturas/foto-60.jpg", "w": 540, "h": 720, "alt": "Placas Plakol"},
-    {"src": "fotos/foto-61.jpg", "thumb": "miniaturas/foto-61.jpg", "w": 540, "h": 720, "alt": "Placas Plakol"},
-    {"src": "fotos/foto-62.jpg", "thumb": "miniaturas/foto-62.jpg", "w": 540, "h": 720, "alt": "Placas Plakol"},
-    {"src": "fotos/foto-63.jpg", "thumb": "miniaturas/foto-63.jpg", "w": 540, "h": 720, "alt": "Placas Plakol"},
-    {"src": "fotos/foto-64.jpg", "thumb": "miniaturas/foto-64.jpg", "w": 479, "h": 720, "alt": "Placas Plakol"},
-    {"src": "fotos/foto-65.jpg", "thumb": "miniaturas/foto-65.jpg", "w": 479, "h": 720, "alt": "Placas Plakol"},
-    {"src": "fotos/foto-66.jpg", "thumb": "miniaturas/foto-66.jpg", "w": 473, "h": 720, "alt": "Placas Plakol"},
-    {"src": "fotos/foto-67.jpg", "thumb": "miniaturas/foto-67.jpg", "w": 479, "h": 720, "alt": "Placas Plakol"},
-    {"src": "fotos/foto-68.jpg", "thumb": "miniaturas/foto-68.jpg", "w": 720, "h": 480, "alt": "Placas Plakol"},
-    {"src": "fotos/foto-69.jpg", "thumb": "miniaturas/foto-69.jpg", "w": 461, "h": 720, "alt": "Placas Plakol"},
-    {"src": "fotos/foto-70.jpg", "thumb": "miniaturas/foto-70.jpg", "w": 502, "h": 720, "alt": "Placas Plakol"},
-    {"src": "fotos/foto-71.jpg", "thumb": "miniaturas/foto-71.jpg", "w": 479, "h": 720, "alt": "Placas Plakol"},
-    {"src": "fotos/foto-72.jpg", "thumb": "miniaturas/foto-72.jpg", "w": 479, "h": 720, "alt": "Placas Plakol"},
-    {"src": "fotos/foto-73.jpg", "thumb": "miniaturas/foto-73.jpg", "w": 479, "h": 720, "alt": "Placas Plakol"},
-    {"src": "fotos/foto-74.jpg", "thumb": "miniaturas/foto-74.jpg", "w": 479, "h": 720, "alt": "Placas Plakol"},
-    {"src": "fotos/foto-75.jpg", "thumb": "miniaturas/foto-75.jpg", "w": 479, "h": 720, "alt": "Placas Plakol"},
-    {"src": "fotos/foto-76.jpg", "thumb": "miniaturas/foto-76.jpg", "w": 479, "h": 720, "alt": "Placas Plakol"},
-    {"src": "fotos/foto-77.jpg", "thumb": "miniaturas/foto-77.jpg", "w": 479, "h": 720, "alt": "Placas Plakol"},
-    {"src": "fotos/foto-78.jpg", "thumb": "miniaturas/foto-78.jpg", "w": 720, "h": 480, "alt": "Placas Plakol"},
-    {"src": "fotos/foto-79.jpg", "thumb": "miniaturas/foto-79.jpg", "w": 479, "h": 720, "alt": "Placas Plakol"},
-    {"src": "fotos/foto-80.jpg", "thumb": "miniaturas/foto-80.jpg", "w": 479, "h": 720, "alt": "Placas Plakol"},
-    {"src": "fotos/foto-81.jpg", "thumb": "miniaturas/foto-81.jpg", "w": 539, "h": 720, "alt": "Placas Plakol"},
-    {"src": "fotos/foto-82.jpg", "thumb": "miniaturas/foto-82.jpg", "w": 540, "h": 720, "alt": "Placas Plakol"},
-    {"src": "fotos/foto-83.jpg", "thumb": "miniaturas/foto-83.jpg", "w": 540, "h": 720, "alt": "Placas Plakol"},
-    {"src": "fotos/foto-84.jpg", "thumb": "miniaturas/foto-84.jpg", "w": 540, "h": 720, "alt": "Placas Plakol"},
-    {"src": "fotos/foto-85.jpg", "thumb": "miniaturas/foto-85.jpg", "w": 540, "h": 720, "alt": "Placas Plakol"},
-    {"src": "fotos/foto-86.jpg", "thumb": "miniaturas/foto-86.jpg", "w": 540, "h": 720, "alt": "Placas Plakol"},
-    {"src": "fotos/foto-87.jpg", "thumb": "miniaturas/foto-87.jpg", "w": 540, "h": 720, "alt": "Placas Plakol"},
-    {"src": "fotos/foto-88.jpg", "thumb": "miniaturas/foto-88.jpg", "w": 540, "h": 720, "alt": "Placas Plakol"},
-    {"src": "fotos/foto-89.jpg", "thumb": "miniaturas/foto-89.jpg", "w": 584, "h": 720, "alt": "Placas Plakol"},
-    {"src": "fotos/foto-90.jpg", "thumb": "miniaturas/foto-90.jpg", "w": 540, "h": 720, "alt": "Placas Plakol"},
-    {"src": "fotos/foto-91.jpg", "thumb": "miniaturas/foto-91.jpg", "w": 479, "h": 720, "alt": "Placas Plakol"}
+    {"src": "fotos/foto-10.jpg", "thumb": "miniaturas/foto-10.jpg", "w": 720, "h": 545, "alt": "Cielo raso instalado con placas Plakol"}
   ]
 };
 
 // Productos. Cada foto vive en la carpeta productos/ (cuadrada, 640 px).
-// Para cambiar una foto, reemplaza el archivo con el mismo nombre.
+// La ficha de características de cada uno vive en caracteristicas/<id>.html
 const PRODUCTS = [
-  { id: "barroco",  name: "Placa Barroco",        img: "productos/barroco.jpg",  url: "https://plakol.com/producto/placa-barroco/" },
-  { id: "rosa",     name: "Placa Centro Rosa",    img: "productos/rosa.jpg",     url: "https://plakol.com/producto/placa-centro-rosa/" },
-  { id: "greco",    name: "Placa Greco",          img: "productos/greco.jpg",    url: "https://plakol.com/producto/placa-greco/" },
-  { id: "infinity", name: "Placa Infinity",       img: "productos/infinity.jpg", url: "https://plakol.com/producto/placa-infinity/" },
-  { id: "micro",    name: "Placa Microperforada", img: "productos/micro.jpg",    url: "https://plakol.com/producto/placa-microperforada/" }
+  { id: "barroco",  name: "Placa Barroco",        img: "productos/barroco.jpg" },
+  { id: "rosa",     name: "Placa Centro Rosa",    img: "productos/rosa.jpg" },
+  { id: "greco",    name: "Placa Greco",          img: "productos/greco.jpg" },
+  { id: "infinity", name: "Placa Infinity",       img: "productos/infinity.jpg" },
+  { id: "micro",    name: "Placa Microperforada", img: "productos/micro.jpg" }
 ];
+const PREVIEW_COUNT = 3;   // cuántos productos se muestran en Inicio
+const GALLERY_PREVIEW_COUNT = 6; // cuántas fotos se muestran en Inicio
 
 const VALUES = [
   { name: "Calidad", text: "Cada placa que fabricamos refleja nuestro estándar de excelencia, desde la selección de las materias primas hasta el producto terminado. Es muy importante aportar confianza a nuestros clientes a través de nuestros productos." },
@@ -477,72 +417,48 @@ const VALUES = [
   { name: "Funcionalidad", text: "Cada producto elaborado por Plakol está diseñado para una instalación fácil, en la que la practicidad y el ahorro de tiempo en la instalación sean un beneficio para nuestros clientes." }
 ];
 
-/* ==========================================================
-   Textura de yeso con grano para el fondo de la portada
-   ========================================================== */
-const SHAPES = {
-  liso: ``   // textura lisa de la portada
-};
-
-function tileSVG(key) {
-  const dots = SHAPES[key].startsWith("@dots");
-  const art = dots
-    ? `<g fill="#8C98AB" stroke="none">${SHAPES[key].slice(5)}</g>`
-    : `<g filter="url(#rel)" fill="none" stroke="#FAFBFD" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">${SHAPES[key]}</g>`;
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="240" height="240">
-    <defs>
-      <filter id="rel" x="-10%" y="-10%" width="120%" height="120%">
-        <feGaussianBlur in="SourceAlpha" stdDeviation="1.3" result="b"/>
-        <feOffset in="b" dx="1.5" dy="2" result="o"/>
-        <feFlood flood-color="#35465F" flood-opacity=".38"/>
-        <feComposite in2="o" operator="in" result="sh"/>
-        <feSpecularLighting in="b" surfaceScale="3" specularConstant=".9" specularExponent="22" lighting-color="#fff" result="s"><feDistantLight azimuth="225" elevation="55"/></feSpecularLighting>
-        <feComposite in="s" in2="SourceAlpha" operator="in" result="hl"/>
-        <feMerge><feMergeNode in="sh"/><feMergeNode in="SourceGraphic"/><feMergeNode in="hl"/></feMerge>
-      </filter>
-      <filter id="gr" x="0" y="0" width="100%" height="100%">
-        <feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="3" seed="4"/>
-        <feColorMatrix values="0 0 0 0 .38  0 0 0 0 .44  0 0 0 0 .55  0 0 0 .55 -.12"/>
-      </filter>
-      <linearGradient id="sh" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F3F5F8"/><stop offset="1" stop-color="#E3E8EF"/></linearGradient>
-    </defs>
-    <rect width="120" height="120" fill="url(#sh)"/>
-    <rect width="120" height="120" filter="url(#gr)"/>
-    ${art}
-    <rect x=".8" y=".8" width="118.4" height="118.4" fill="none" stroke="#BFC9D8" stroke-width="1.6"/>
-  </svg>`;
-}
-const uriCache = {};
-function tileURI(key) {
-  return uriCache[key] ||= "data:image/svg+xml;utf8," + encodeURIComponent(tileSVG(key));
-}
-const imgOf = p => p.img;
-
 /* ---------- Utilidades ---------- */
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
-/* ---------- Hero: textura de cielo raso ---------- */
-$("#heroBg").style.backgroundImage = `url("${tileURI("liso")}")`;
-
-/* ---------- Menú móvil y navegación activa ---------- */
+/* ==========================================================
+   Navegación por páginas: solo una sección visible a la vez
+   ========================================================== */
+const PAGES = ["inicio", "nosotros", "productos", "galeria", "contacto"];
+const links = $$("nav.main a.link");
 const burger = $("#burger"), menu = $("#menu");
+
+function showPage(id) {
+  if (!PAGES.includes(id)) id = "inicio";
+  PAGES.forEach(p => { $("#" + p).hidden = p !== id; });
+  links.forEach(l => l.classList.toggle("active", l.getAttribute("href") === "#" + id));
+  scrollTo({ top: 0 });
+}
+addEventListener("hashchange", () => showPage(location.hash.slice(1)));
+showPage(location.hash.slice(1) || "inicio");
+
 burger.addEventListener("click", () => {
   const open = menu.classList.toggle("open");
   burger.setAttribute("aria-expanded", open);
 });
-$$("nav.main a").forEach(a => a.addEventListener("click", () => { menu.classList.remove("open"); burger.setAttribute("aria-expanded", "false"); }));
 
-const links = $$("nav.main a.link");
-const secIds = ["inicio", "nosotros", "productos", "galeria", "contacto"];
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      links.forEach(l => l.classList.toggle("active", l.getAttribute("href") === "#" + e.target.id));
+// Un solo listener: cualquier enlace "#pagina" cambia de sección (sin salto de scroll del navegador).
+document.addEventListener("click", e => {
+  const q = e.target.closest("a.q");
+  if (q) sel.value = PRODUCTS.find(x => x.id === q.dataset.id).name;
+
+  const a = e.target.closest('a[href^="#"]');
+  if (a) {
+    const id = a.getAttribute("href").slice(1);
+    if (PAGES.includes(id)) {
+      e.preventDefault();
+      location.hash = id;
+      showPage(id);
+      menu.classList.remove("open");
+      burger.setAttribute("aria-expanded", "false");
     }
-  });
-}, { rootMargin: "-45% 0px -50% 0px" });
-secIds.forEach(id => io.observe(document.getElementById(id)));
+  }
+});
 
 /* ---------- Pestañas de valores ---------- */
 const tablist = $("#tablist"), panel = $("#tabpanel");
@@ -566,51 +482,44 @@ function selectTab(i, focus) {
 selectTab(0);
 
 /* ---------- Productos ---------- */
-const list = $("#productList"), sel = $("#selProducto");
-PRODUCTS.forEach(p => {
-  const li = document.createElement("li");
-  li.className = "card";
-  li.innerHTML = `
-    <div class="pic"><img src="${imgOf(p)}" alt="Foto de la ${p.name}" width="640" height="640" loading="lazy" decoding="async"></div>
-    <div class="info">
-      <h3>${p.name}</h3>
-      <p>Placa de cielo raso desmontable</p>
-      <div class="row">
-        <a class="q" href="#contacto" data-id="${p.id}">Cotizar</a>
-        <a href="${p.url}" target="_blank" rel="noopener">Leer más</a>
-      </div>
-    </div>`;
-  list.appendChild(li);
-  sel.add(new Option(p.name, p.name));
-});
+const sel = $("#selProducto");
+PRODUCTS.forEach(p => sel.add(new Option(p.name, p.name)));
 sel.add(new Option("Aún no lo sé, necesito asesoría", "Necesito asesoría para elegir"));
 sel.value = "Necesito asesoría para elegir";
 
-// "Cotizar" deja la placa elegida en el formulario
-list.addEventListener("click", e => {
-  const a = e.target.closest("a.q");
-  if (a) sel.value = PRODUCTS.find(x => x.id === a.dataset.id).name;
-});
+function productCard(p) {
+  const li = document.createElement("li");
+  li.className = "card";
+  const ficha = `caracteristicas/${p.id}.html`;
+  li.innerHTML = `
+    <a class="pic" href="${ficha}" target="_blank" rel="noopener"><img src="${p.img}" alt="Foto de la ${p.name}" width="640" height="640" loading="lazy" decoding="async"></a>
+    <div class="info">
+      <a class="titlelink" href="${ficha}" target="_blank" rel="noopener"><h3>${p.name}</h3></a>
+      <p>Placa de cielo raso desmontable</p>
+      <div class="row">
+        <a class="q" href="#contacto" data-id="${p.id}">Cotizar</a>
+        <a class="leer" href="${ficha}" target="_blank" rel="noopener">Ver características</a>
+      </div>
+    </div>`;
+  return li;
+}
+const productList = $("#productList"), productPreview = $("#productPreview");
+PRODUCTS.forEach(p => productList.appendChild(productCard(p)));
+PRODUCTS.slice(0, PREVIEW_COUNT).forEach(p => productPreview.appendChild(productCard(p)));
 
 /* ---------- Galería y visor ---------- */
-const gal = $("#gallery"), lb = $("#lb"), moreBox = $("#galleryMore"), moreBtn = $("#moreBtn");
-const FIRST = 24;   // fotos visibles al inicio; el resto aparece con "Ver más"
+const gal = $("#gallery"), galPreview = $("#galleryPreview"), lb = $("#lb");
 let cur = 0;
-CONFIG.gallery.forEach((g, i) => {
+function galleryFigure(g, i) {
   const f = document.createElement("figure");
-  if (i >= FIRST) f.hidden = true;
   f.innerHTML = `<button type="button" aria-label="Ampliar foto ${i + 1}: ${g.alt}"><img src="${g.thumb || g.src}" width="${g.w}" height="${g.h}" alt="${g.alt}" loading="lazy" decoding="async"></button>`;
   f.firstElementChild.addEventListener("click", () => openLb(i));
-  gal.appendChild(f);
-});
-if (CONFIG.gallery.length > FIRST) {
-  moreBox.hidden = false;
-  moreBtn.textContent = `Ver las ${CONFIG.gallery.length - FIRST} fotos restantes`;
-  moreBtn.addEventListener("click", () => {
-    $$("figure[hidden]", gal).forEach(f => f.hidden = false);
-    moreBox.hidden = true;
-  });
+  return f;
 }
+CONFIG.gallery.forEach((g, i) => {
+  gal.appendChild(galleryFigure(g, i));
+  if (i < GALLERY_PREVIEW_COUNT) galPreview.appendChild(galleryFigure(g, i));
+});
 function openLb(i) {
   cur = (i + CONFIG.gallery.length) % CONFIG.gallery.length;
   const g = CONFIG.gallery[cur];
