@@ -421,18 +421,12 @@
 const CONFIG = {
   whatsapp: "573214818481",   // Código de país + número, sin + ni espacios. Vacío = botón oculto.
   email: "",
-  gallery: [
-    {"src": "fotos/foto-01.jpg", "thumb": "miniaturas/foto-01.jpg", "w": 720, "h": 595, "alt": "Cielo raso instalado con placas Plakol"},
-    {"src": "fotos/foto-02.jpg", "thumb": "miniaturas/foto-02.jpg", "w": 720, "h": 480, "alt": "Cielo raso instalado con placas Plakol"},
-    {"src": "fotos/foto-03.jpg", "thumb": "miniaturas/foto-03.jpg", "w": 720, "h": 475, "alt": "Cielo raso instalado con placas Plakol"},
-    {"src": "fotos/foto-04.jpg", "thumb": "miniaturas/foto-04.jpg", "w": 720, "h": 553, "alt": "Cielo raso instalado con placas Plakol"},
-    {"src": "fotos/foto-05.jpg", "thumb": "miniaturas/foto-05.jpg", "w": 652, "h": 720, "alt": "Cielo raso instalado con placas Plakol"},
-    {"src": "fotos/foto-06.jpg", "thumb": "miniaturas/foto-06.jpg", "w": 480, "h": 720, "alt": "Cielo raso instalado con placas Plakol"},
-    {"src": "fotos/foto-07.jpg", "thumb": "miniaturas/foto-07.jpg", "w": 720, "h": 716, "alt": "Cielo raso instalado con placas Plakol"},
-    {"src": "fotos/foto-08.jpg", "thumb": "miniaturas/foto-08.jpg", "w": 480, "h": 720, "alt": "Cielo raso instalado con placas Plakol"},
-    {"src": "fotos/foto-09.jpg", "thumb": "miniaturas/foto-09.jpg", "w": 564, "h": 720, "alt": "Cielo raso instalado con placas Plakol"},
-    {"src": "fotos/foto-10.jpg", "thumb": "miniaturas/foto-10.jpg", "w": 720, "h": 545, "alt": "Cielo raso instalado con placas Plakol"}
-  ]
+  // Genera automáticamente foto-01.jpg ... foto-93.jpg desde la carpeta "fotos".
+  // Si luego cambias la cantidad de fotos, solo ajusta el número 93 de aquí abajo.
+  gallery: Array.from({ length: 93 }, (_, i) => {
+    const n = String(i + 1).padStart(2, "0");
+    return { src: `fotos/foto-${n}.jpg`, thumb: `miniaturas/foto-${n}.jpg`, alt: "Cielo raso instalado con placas Plakol" };
+  })
 };
 
 /* Productos. "images" es la lista de fotos que se ven en la ficha (modal).
@@ -622,7 +616,7 @@ const gal = $("#gallery"), galPreview = $("#galleryPreview"), lb = $("#lb");
 let cur = 0;
 function galleryFigure(g, i) {
   const f = document.createElement("figure");
-  f.innerHTML = `<button type="button" aria-label="Ampliar foto ${i + 1}: ${g.alt}">${imgWithFallback(g.thumb || g.src, g.alt, `width="${g.w}" height="${g.h}" loading="lazy" decoding="async"`)}</button>`;
+  f.innerHTML = `<button type="button" aria-label="Ampliar foto ${i + 1}: ${g.alt}">${imgWithFallback(g.thumb || g.src, g.alt, g.w && g.h ? `width="${g.w}" height="${g.h}" loading="lazy" decoding="async"` : `loading="lazy" decoding="async"`)}</button>`;
   f.firstElementChild.addEventListener("click", () => openLb(i));
   return f;
 }
